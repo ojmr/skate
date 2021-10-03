@@ -12,7 +12,7 @@ function registro() {
 
         dataType: 'json',
         data: elemento,
-        url: "https://g378944fbaa91b4-db202109231835.adb.sa-saopaulo-1.oraclecloudapps.com/ords/admin/skate/skate",
+        url: "https://g378944fbaa91b4-db202109231835.adb.sa-saopaulo-1.oraclecloudapps.com/ords/admin/client/client",
         type: 'POST',
 
         success: function (response) {
@@ -29,7 +29,7 @@ function obtenerItems() {
 
     $.ajax({
         dataType: 'json',
-        url: "https://g378944fbaa91b4-db202109231835.adb.sa-saopaulo-1.oraclecloudapps.com/ords/admin/skate/skate",
+        url: "https://g378944fbaa91b4-db202109231835.adb.sa-saopaulo-1.oraclecloudapps.com/ords/admin/client/client",
         type: 'GET',
 
         success: function (response) {
@@ -39,10 +39,9 @@ function obtenerItems() {
 
                 $("#miResultado").append("<tr>");
                 $("#miResultado").append("<td>" + response.items[i].id + "</td>");
-                $("#miResultado").append("<td>" + response.items[i].brand + "</td>");
-                $("#miResultado").append("<td>" + response.items[i].model + "</td>");
-                $("#miResultado").append("<td>" + response.items[i].category_id + "</td>");
                 $("#miResultado").append("<td>" + response.items[i].name + "</td>");
+                $("#miResultado").append("<td>" + response.items[i].email + "</td>");
+                $("#miResultado").append("<td>" + response.items[i].age + "</td>");
                 $("#miResultado").append('<td><button onclick = "borrar('+response.items[i].id+')">Borrar</button></td>');
                 $("#miResultado").append('<td><button onclick="obtenerItemEspecifico('+response.items[i].id+')">Cargar</button></td>');
                 $("#miResultado").append("<tr>");
@@ -70,7 +69,7 @@ function borrar(idElemento) {
     $.ajax({
         dataType: 'json',
         data: dataToSend,
-        url: "https://g378944fbaa91b4-db202109231835.adb.sa-saopaulo-1.oraclecloudapps.com/ords/admin/skate/skate",
+        url: "https://g378944fbaa91b4-db202109231835.adb.sa-saopaulo-1.oraclecloudapps.com/ords/admin/client/client",
         type: 'DELETE',
         contentType:'application/json',
         success: function (response) {
@@ -85,18 +84,16 @@ function borrar(idElemento) {
 function obtenerItemEspecifico(idItem) {
     $.ajax({
         dataType: 'json',
-        url: "https://g378944fbaa91b4-db202109231835.adb.sa-saopaulo-1.oraclecloudapps.com/ords/admin/skate/skate/"+idItem,
+        url: "https://g378944fbaa91b4-db202109231835.adb.sa-saopaulo-1.oraclecloudapps.com/ords/admin/client/client/"+idItem,
         type: 'GET',
 
         success:function(response) {
             var item =response.items[0];
 
             $("#miId").val(item.id);
-            $("#miBrand").val(item.brand);
-            $("#miModel").val(item.model);
-            $("#miCategory_id").val(item.category_id);
             $("#miName").val(item.name);
-
+            $("#miEmail").val(item.email);
+            $("#miAge").val(item.age);
 
         },
         error: function (jqXHR, textStatus, errorThrown) {
@@ -109,10 +106,9 @@ function obtenerItemEspecifico(idItem) {
 function actualizar(){
     var elemento={
         id:$("#miId").val(),
-        brand:$("#miBrand").val(),
-        model:$("#miModel").val(),
-        category_id:$("#miCategory_id").val(),
-        name:$("#miName").val()
+        name:$("#miName").val(),
+        email:$("#miEmail").val(),
+        age:$("#miAge").val()
       }
     
     
@@ -122,7 +118,7 @@ function actualizar(){
           dataType: 'json',
           data:dataToSend,
           contentType:'application/json',
-          url:"https://g378944fbaa91b4-db202109231835.adb.sa-saopaulo-1.oraclecloudapps.com/ords/admin/skate/skate",
+          url:"https://g378944fbaa91b4-db202109231835.adb.sa-saopaulo-1.oraclecloudapps.com/ords/admin/client/client",
           type:'PUT',
           
           success:function(response) {
