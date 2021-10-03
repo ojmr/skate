@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mensaje</title>
+    <style>
+		body{
+            background-color: #797e79
+        }
+        h1{
+            text-align: center;
+        }
+        table, th, td {
+          border: 1px solid black;
+          border-collapse: collapse;
+        }
+    </style> 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script type="text/javascript" src="/js/mensajes.js"></script>
+</head>
+<body>
+    <h1>Mensaje</h1>
+    <a href="index.html">Ir a inicio</a>
+    <a href="skate.html">Ir a skate</a>
+    <a href="cliente.html">Ir a cliente</a><br>
+
+    <input type="number" id="miId" placeholder="codigo">
+	<input type="text" id="miMensaje" placeholder="mensaje">
+
+
+	<button onclick="registro()">subir datos</button>
+
+	<button onclick="obtenerItems()">obtener datos</button>
+
+	<!-- <button onclick="actualizar()">Editar</button> -->  
+
+    <div>
+        <table>
+            <tbody id="miResultado">
+            </tbody>
+        </table>
+
+</body>
+</html>

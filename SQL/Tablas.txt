@@ -1,0 +1,57 @@
+CREATE TABLE skate(
+	ID NUMBER(10) NOT NULL,
+	BRAND VARCHAR2(20) NULL,
+	MODEL NUMBER(10) NULL,
+    CATEGORY_ID NUMBER (10) NULL,
+	NAME VARCHAR2(4000) NULL,
+
+	PRIMARY KEY (ID));
+
+-- Generate ID using sequence and trigger
+CREATE SEQUENCE skate_seq START WITH 1 INCREMENT BY 1;
+
+CREATE OR REPLACE TRIGGER skate_seq_tr
+BEFORE INSERT ON skate FOR EACH ROW
+WHEN (NEW.ID IS NULL)
+BEGIN
+SELECT skate_seq.NEXTVAL INTO :NEW.ID FROM DUAL;
+END; 
+-----------------------------------------------------------------------------------------------------------
+CREATE TABLE client(
+	ID NUMBER(10) NOT NULL,
+	NAME VARCHAR2(4000) NULL,
+	EMAIL VARCHAR2(20) NULL,
+    	AGE NUMBER (3) NULL,
+
+	PRIMARY KEY (ID));
+
+-- Generate ID using sequence and trigger
+CREATE SEQUENCE client_seq START WITH 1 INCREMENT BY 1;
+
+CREATE OR REPLACE TRIGGER client_seq_tr
+BEFORE INSERT ON client FOR EACH ROW
+WHEN (NEW.ID IS NULL)
+BEGIN
+SELECT client_seq.NEXTVAL INTO :NEW.ID FROM DUAL;
+END; 
+
+-----------------------------------------------------------------------------------------------------------
+CREATE TABLE message(
+	ID NUMBER(10) NOT NULL,
+	MESSAGETEXT VARCHAR2(4000) NULL,
+
+	PRIMARY KEY (ID));
+
+-- Generate ID using sequence and trigger
+CREATE SEQUENCE message_seq START WITH 1 INCREMENT BY 1;
+
+CREATE OR REPLACE TRIGGER message_seq_tr
+BEFORE INSERT ON message FOR EACH ROW
+WHEN (NEW.ID IS NULL)
+BEGIN
+SELECT message_seq.NEXTVAL INTO :NEW.ID FROM DUAL;
+END; 
+
+
+
+
