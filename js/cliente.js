@@ -1,10 +1,9 @@
 function registro() {
     var elemento = {
         id:$("#miId").val(),
-        brand:$("#miBrand").val(),
-        model:$("#miModel").val(),
-        category_id:$("#miCategory_id").val(),
-        name:$("#miName").val()
+        name:$("#miName").val(),
+        email:$("#miEmail").val(),
+        age:$("#miAge").val(),
     }
 
     var dataToSend = JSON.stringify(elemento);

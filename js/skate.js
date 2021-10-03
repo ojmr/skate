@@ -21,6 +21,7 @@ function registro() {
         },
         error: function (jqXHR, textStatus, errorThrown) {
 
+            
         }
     });
 
