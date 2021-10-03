@@ -3,28 +3,34 @@
 <head>
 	<title>SKATE</title>
     <style>
+		body{
+            background-color: #797e79
+        }
+        h1{
+            text-align: center;
+        }
         table, th, td {
           border: 1px solid black;
           border-collapse: collapse;
         }
-        </style>
-        
+    </style> 
 	<meta http-equiv="Access-Control-Allow-Origin" content="*">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
 	<script type="text/javascript" src="/js/skate.js"></script>
 </head>
 <body>
 
-	<h1>SKATE</h1>
+	<h1>Modelo Patinetas</h1>
+
+	<a href="index.html">Ir a inicio</a><br>
+    <a href="cliente.html">Ir a cliente</a><br>
+    <a href="mensajes.html">Ir a comentarios</a><br>
 
 	<input type="number" id="miId" placeholder="id">
 	<input type="text" id="miBrand" placeholder="brand">
 	<input type="number" id="miModel" placeholder="model">
 	<input type="number" id="miCategory_id" placeholder="category_id">
 	<input type="text" id="miName" placeholder="name">
-
-
 
 	<button onclick="registro()">subir datos</button>
 
@@ -35,12 +41,10 @@
     <div>
         <table>
             <tbody id="miResultado">
-
             </tbody>
         </table>
 
     </div>
-
 </body>
 </html>
 
