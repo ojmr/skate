@@ -1,10 +1,8 @@
 function registro() {
     var elemento = {
         id:$("#miId").val(),
-        brand:$("#miBrand").val(),
-        model:$("#miModel").val(),
-        category_id:$("#miCategory_id").val(),
-        name:$("#miName").val()
+        messagetext:$("#miMensaje").val()
+    
     }
 
     var dataToSend = JSON.stringify(elemento);
@@ -13,7 +11,7 @@ function registro() {
 
         dataType: 'json',
         data: elemento,
-        url: "https://g378944fbaa91b4-db202109231835.adb.sa-saopaulo-1.oraclecloudapps.com/ords/admin/skate/skate",
+        url: "https://g378944fbaa91b4-db202109231835.adb.sa-saopaulo-1.oraclecloudapps.com/ords/admin/message/message",
         type: 'POST',
 
         success: function (response) {
@@ -30,7 +28,7 @@ function obtenerItems() {
 
     $.ajax({
         dataType: 'json',
-        url: "https://g378944fbaa91b4-db202109231835.adb.sa-saopaulo-1.oraclecloudapps.com/ords/admin/skate/skate",
+        url: "https://g378944fbaa91b4-db202109231835.adb.sa-saopaulo-1.oraclecloudapps.com/ords/admin/message/message",
         type: 'GET',
 
         success: function (response) {
@@ -40,10 +38,8 @@ function obtenerItems() {
 
                 $("#miResultado").append("<tr>");
                 $("#miResultado").append("<td>" + response.items[i].id + "</td>");
-                $("#miResultado").append("<td>" + response.items[i].brand + "</td>");
-                $("#miResultado").append("<td>" + response.items[i].model + "</td>");
-                $("#miResultado").append("<td>" + response.items[i].category_id + "</td>");
-                $("#miResultado").append("<td>" + response.items[i].name + "</td>");
+                $("#miResultado").append("<td>" + response.items[i].messagetext + "</td>");
+
                 $("#miResultado").append('<td><button onclick = "borrar('+response.items[i].id+')">Borrar</button></td>');
                 $("#miResultado").append('<td><button onclick="obtenerItemEspecifico('+response.items[i].id+')">Cargar</button></td>');
                 $("#miResultado").append("<tr>");
@@ -71,7 +67,7 @@ function borrar(idElemento) {
     $.ajax({
         dataType: 'json',
         data: dataToSend,
-        url: "https://g378944fbaa91b4-db202109231835.adb.sa-saopaulo-1.oraclecloudapps.com/ords/admin/skate/skate",
+        url: "https://g378944fbaa91b4-db202109231835.adb.sa-saopaulo-1.oraclecloudapps.com/ords/admin/message/message",
         type: 'DELETE',
         contentType:'application/json',
         success: function (response) {
@@ -86,17 +82,15 @@ function borrar(idElemento) {
 function obtenerItemEspecifico(idItem) {
     $.ajax({
         dataType: 'json',
-        url: "https://g378944fbaa91b4-db202109231835.adb.sa-saopaulo-1.oraclecloudapps.com/ords/admin/skate/skate/"+idItem,
+        url: "https://g378944fbaa91b4-db202109231835.adb.sa-saopaulo-1.oraclecloudapps.com/ords/admin/message/message/"+idItem,
         type: 'GET',
 
         success:function(response) {
             var item =response.items[0];
 
             $("#miId").val(item.id);
-            $("#miBrand").val(item.brand);
-            $("#miModel").val(item.model);
-            $("#miCategory_id").val(item.category_id);
-            $("#miName").val(item.name);
+            $("#miMensaje").val(item.messagetext);
+            
 
 
         },
@@ -110,10 +104,7 @@ function obtenerItemEspecifico(idItem) {
 function actualizar(){
     var elemento={
         id:$("#miId").val(),
-        brand:$("#miBrand").val(),
-        model:$("#miModel").val(),
-        category_id:$("#miCategory_id").val(),
-        name:$("#miName").val()
+        messagetext:$("#miMensaje").val()
       }
     
     
@@ -123,7 +114,7 @@ function actualizar(){
           dataType: 'json',
           data:dataToSend,
           contentType:'application/json',
-          url:"https://g378944fbaa91b4-db202109231835.adb.sa-saopaulo-1.oraclecloudapps.com/ords/admin/skate/skate",
+          url:"https://g378944fbaa91b4-db202109231835.adb.sa-saopaulo-1.oraclecloudapps.com/ords/admin/message/message",
           type:'PUT',
           
           success:function(response) {
