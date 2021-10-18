@@ -1,64 +1,6 @@
-function registro() {
-    var elemento = {
-        //id:$("#miId").val(),
-        name:$("#miName").val(),
-        description:$("#miDescripcion").val(),
-        
-    }
-
-    var dataToSend = JSON.stringify(elemento);
-
-    $.ajax({
-
-        dataType: 'json',
-        data: elemento,
-        url: "http://localhost:80/api/Category/save",
-        type: 'POST',
-
-        success: function (response) {
-            console.log(response);
-        },
-        error: function (jqXHR, textStatus, errorThrown) {
-
-        }
-    });
-
-}
-
-function obtenerItems() {
-
-    $.ajax({
-        dataType: 'json',
-        url: "http://localhost:80/api/Category/all",
-        type: 'GET',
-
-        success: function (response) {
-
-
-            for (let i = 0; i < response.items.length; i++) {
-
-                $("#miResultado").append("<tr>");            
-                $("#miResultado").append("<td>" + response.items[i].name + "</td>");
-                $("#miResultado").append("<td>" + response.items[i].description + "</td>");
-                $("#miResultado").append('<td><button onclick = "borrar('+response.items[i].id+')">Borrar</button></td>');
-                $("#miResultado").append('<td><button onclick="obtenerItemEspecifico('+response.items[i].id+')">Cargar</button></td>');
-                $("#miResultado").append("<tr>");
-
-
-            }
-
-        },
-        error: function (jqXHR, textStatus, errorThrown) {
-
-        }
-    });
-
-}
-
-
 function borrar(idElemento) {
     var elemento = {
-        id:idElemento
+        id: idElemento
 
     };
 
@@ -69,7 +11,7 @@ function borrar(idElemento) {
         data: dataToSend,
         url: "http://localhost:80/api/Category/all",
         type: 'DELETE',
-        contentType:'application/json',
+        contentType: 'application/json',
         success: function (response) {
             console.log(response);
         },
@@ -82,11 +24,11 @@ function borrar(idElemento) {
 function obtenerItemEspecifico(idItem) {
     $.ajax({
         dataType: 'json',
-        url: "http://localhost:80/api/Category/"+idItem,
+        url: "http://localhost:80/api/Category/" + idItem,
         type: 'GET',
 
-        success:function(response) {
-            var item =response.items[0];
+        success: function (response) {
+            var item = response.items[0];
 
             $("#miName").val(item.name);
             $("#miDescripcion").val(item.description);
@@ -99,29 +41,88 @@ function obtenerItemEspecifico(idItem) {
 
 }
 
-function actualizar(){
-    var elemento={
-        name:$("#miName").val(),
-        description:$("#miDescripcion").val(),
-      }
-    
-    
-    var dataToSend=JSON.stringify(elemento);
+function actualizar() {
+    var elemento = {
+        name: $("#miName").val(),
+        description: $("#miDescripcion").val(),
+    }
+
+
+    var dataToSend = JSON.stringify(elemento);
     //JSON= JavaScript Object Notation
     $.ajax({
-          dataType: 'json',
-          data:dataToSend,
-          contentType:'application/json',
-          url:"http://localhost:80/api/Category/all",
-          type:'PUT',
-          
-          success:function(response) {
+        dataType: 'json',
+        data: dataToSend,
+        contentType: 'application/json',
+        url: "http://localhost:80/api/Category/all",
+        type: 'PUT',
+
+        success: function (response) {
             console.log(response);
-          },
-          
-          error: function(jqXHR, textStatus, errorThrown) {
-                
-          }
-      });
-    
+        },
+
+        error: function (jqXHR, textStatus, errorThrown) {
+
+        }
+    });
+
+}
+
+
+function traerInformacionCategorias() {
+    $.ajax({
+        url: "http://localhost:80/api/Category/all",
+        type: "GET",
+        datatype: "JSON",
+        success: function (respuesta) {
+            console.log(respuesta);
+            pintarRespuesta(respuesta);
+        }
+    });
+}
+
+function pintarRespuesta(respuesta) {
+
+    let myTable = "<table>";
+    for (i = 0; i < respuesta.length; i++) {
+        myTable += "<tr>";
+        myTable += "<td>" + respuesta[i].name + "</td>";
+        myTable += "<td>" + respuesta[i].description + "</td>";
+        myTable += "</tr>";
     }
+    myTable += "</table>";
+    $("#miResultado").html(myTable);
+}
+
+function guardarInformacionCategorias() {
+    let var2 = {
+        name: $("#miName").val(),
+        description: $("#miDescripcion").val()
+    };
+
+    $.ajax({
+        type: 'POST',
+        contentType: "application/json; charset=utf-8",
+        dataType: 'JSON',
+        data: JSON.stringify(var2),
+
+        url: "http://localhost:80/api/Category/save",
+
+
+        success: function (response) {
+            console.log(response);
+            console.log("Se guardo correctamente");
+            alert("Se guardo correctamente");
+            window.location.reload()
+
+        },
+
+        error: function (jqXHR, textStatus, errorThrown) {
+            window.location.reload()
+            alert("No se guardo correctamente");
+
+
+        }
+    });
+
+}
