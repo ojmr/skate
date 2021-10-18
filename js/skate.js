@@ -13,7 +13,7 @@ function registro() {
 
         dataType: 'json',
         data: elemento,
-        url: "https://g378944fbaa91b4-db202109231835.adb.sa-saopaulo-1.oraclecloudapps.com/ords/admin/skate/skate",
+        url: "http://localhost:80/api/Category/save",
         type: 'POST',
 
         success: function (response) {
@@ -27,11 +27,76 @@ function registro() {
 
 }
 
+function traerInformacionCategorias(){
+    $.ajax({
+        url:"http://localhost:80/api/Category/all",
+        type:"GET",
+        datatype:"JSON",
+        success:function(respuesta){
+            console.log(respuesta);
+            pintarRespuesta(respuesta);
+        }
+    });
+}
+
+function pintarRespuesta(respuesta){
+
+    let myTable="<table>";
+    for(i=0;i<respuesta.length;i++){
+        myTable+="<tr>";
+        myTable+="<td>"+respuesta[i].name+"</td>";
+        myTable+="<td>"+respuesta[i].description+"</td>";
+        myTable+="</tr>";
+    }
+    myTable+="</table>";
+    $("#miResultado").html(myTable);
+}
+
+
+function guardarInformacionCategorias(){
+    let var2 = {
+
+        id:$("#miId").val(),
+        brand:$("#miBrand").val(),
+        model:$("#miModel").val(),
+        category_id:$("#miCategory_id").val(),
+        name:$("#miName").val()
+        };
+      
+        $.ajax({
+        type:'POST',
+        contentType: "application/json; charset=utf-8",
+        dataType: 'JSON',
+        data: JSON.stringify(var2),
+        
+        url:"http://localhost:80/api/Category/save",
+       
+        
+        success:function(response) {
+                console.log(response);
+            console.log("Se guardo correctamente");
+            alert("Se guardo correctamente");
+            window.location.reload()
+    
+        },
+        
+        error: function(jqXHR, textStatus, errorThrown) {
+              window.location.reload()
+            alert("No se guardo correctamente");
+    
+    
+        }
+        });
+
+}
+
+
+
 function obtenerItems() {
 
     $.ajax({
         dataType: 'json',
-        url: "https://g378944fbaa91b4-db202109231835.adb.sa-saopaulo-1.oraclecloudapps.com/ords/admin/skate/skate",
+        url: "http://localhost:80/api/Category/all",
         type: 'GET',
 
         success: function (response) {
@@ -72,7 +137,7 @@ function borrar(idElemento) {
     $.ajax({
         dataType: 'json',
         data: dataToSend,
-        url: "https://g378944fbaa91b4-db202109231835.adb.sa-saopaulo-1.oraclecloudapps.com/ords/admin/skate/skate",
+        url: "http://localhost:80/api/Category",
         type: 'DELETE',
         contentType:'application/json',
         success: function (response) {
@@ -87,7 +152,7 @@ function borrar(idElemento) {
 function obtenerItemEspecifico(idItem) {
     $.ajax({
         dataType: 'json',
-        url: "https://g378944fbaa91b4-db202109231835.adb.sa-saopaulo-1.oraclecloudapps.com/ords/admin/skate/skate/"+idItem,
+        url: "http://localhost:80/api/Category/"+idItem,
         type: 'GET',
 
         success:function(response) {

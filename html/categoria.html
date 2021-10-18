@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Categoria</title>
+    <style>
+		body{
+            background-color: #797e79
+        }
+        h1{
+            text-align: center;
+        }
+        table, th, td {
+          border: 1px solid black;
+          border-collapse: collapse;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script type="text/javascript" src="/js/categoria.js"></script>
+</head>
+<body>
+    <h1>Cliente</h1>
+
+    <a href="index.html">Ir a inicio</a>
+    <a href="skate.html">Ir a skate</a>
+    <a href="mensajes.html">Ir a Mensajes</a>
+    <a href="cliente.html">Ir a cliente</a><br>
+
+
+    
+    <input type="text" id="miName" placeholder="nombre">
+    <input type="text" id="miDescripcion" placeholder="descripción">
+
+
+
+	<button onclick="registro()">subir datos</button>
+
+	<button onclick="obtenerItems()">obtener datos</button>
+
+	<button onclick="actualizar()">Editar</button>
+
+    <div>
+        <table>
+            <tbody id="miResultado">
+            </tbody>
+        </table>
+    </div>
+
+
+</body>
+</html>
