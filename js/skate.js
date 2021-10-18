@@ -1,35 +1,7 @@
-function registro() {
-    var elemento = {
-        id:$("#miId").val(),
-        brand:$("#miBrand").val(),
-        model:$("#miModel").val(),
-        category_id:$("#miCategory_id").val(),
-        name:$("#miName").val()
-    }
 
-    var dataToSend = JSON.stringify(elemento);
-
+function traerInformacion(){
     $.ajax({
-
-        dataType: 'json',
-        data: elemento,
-        url: "http://localhost:80/api/Category/save",
-        type: 'POST',
-
-        success: function (response) {
-            console.log(response);
-        },
-        error: function (jqXHR, textStatus, errorThrown) {
-
-            
-        }
-    });
-
-}
-
-function traerInformacionCategorias(){
-    $.ajax({
-        url:"http://localhost:80/api/Category/all",
+        url:"http://localhost:80/api/Skate/all",
         type:"GET",
         datatype:"JSON",
         success:function(respuesta){
@@ -44,16 +16,24 @@ function pintarRespuesta(respuesta){
     let myTable="<table>";
     for(i=0;i<respuesta.length;i++){
         myTable+="<tr>";
+        myTable+="<td>"+respuesta[i].id+"</td>";
+        myTable+="<td>"+respuesta[i].brand+"</td>";
+        myTable+="<td>"+respuesta[i].model+"</td>";
+        myTable+="<td>"+respuesta[i].category_id+"</td>";
         myTable+="<td>"+respuesta[i].name+"</td>";
-        myTable+="<td>"+respuesta[i].description+"</td>";
+        myTable+=('<td><button onclick = "borrar('+respuesta[i].id+')">Borrar</button></td>');
+        myTable+=('<td><button onclick="obtenerItemEspecifico('+respuesta[i].id+')">Cargar</button></td>');
         myTable+="</tr>";
+
+
+    
     }
     myTable+="</table>";
     $("#miResultado").html(myTable);
 }
 
 
-function guardarInformacionCategorias(){
+function guardarInformacion(){
     let var2 = {
 
         id:$("#miId").val(),
@@ -69,7 +49,7 @@ function guardarInformacionCategorias(){
         dataType: 'JSON',
         data: JSON.stringify(var2),
         
-        url:"http://localhost:80/api/Category/save",
+        url:"http://localhost:80/api/Skate/save",
        
         
         success:function(response) {
@@ -92,39 +72,6 @@ function guardarInformacionCategorias(){
 
 
 
-function obtenerItems() {
-
-    $.ajax({
-        dataType: 'json',
-        url: "http://localhost:80/api/Category/all",
-        type: 'GET',
-
-        success: function (response) {
-
-
-            for (let i = 0; i < response.items.length; i++) {
-
-                $("#miResultado").append("<tr>");
-                $("#miResultado").append("<td>" + response.items[i].id + "</td>");
-                $("#miResultado").append("<td>" + response.items[i].brand + "</td>");
-                $("#miResultado").append("<td>" + response.items[i].model + "</td>");
-                $("#miResultado").append("<td>" + response.items[i].category_id + "</td>");
-                $("#miResultado").append("<td>" + response.items[i].name + "</td>");
-                $("#miResultado").append('<td><button onclick = "borrar('+response.items[i].id+')">Borrar</button></td>');
-                $("#miResultado").append('<td><button onclick="obtenerItemEspecifico('+response.items[i].id+')">Cargar</button></td>');
-                $("#miResultado").append("<tr>");
-
-
-            }
-
-        },
-        error: function (jqXHR, textStatus, errorThrown) {
-
-        }
-    });
-
-}
-
 
 function borrar(idElemento) {
     var elemento = {
@@ -137,7 +84,7 @@ function borrar(idElemento) {
     $.ajax({
         dataType: 'json',
         data: dataToSend,
-        url: "http://localhost:80/api/Category",
+        url: "http://129.159.57.27:80/api/Category",
         type: 'DELETE',
         contentType:'application/json',
         success: function (response) {
@@ -152,7 +99,7 @@ function borrar(idElemento) {
 function obtenerItemEspecifico(idItem) {
     $.ajax({
         dataType: 'json',
-        url: "http://localhost:80/api/Category/"+idItem,
+        url: "http://129.159.57.27:80/api/Category/"+idItem,
         type: 'GET',
 
         success:function(response) {
