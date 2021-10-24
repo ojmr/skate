@@ -5,6 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reserva</title>
+    <link rel="stylesheet" type="text/css" href="/css/estiloCategoria.css" />
+    <link rel="stylesheet" type="text/css" href="/css/estilo.css" />
     <style>
 		
         h1{
@@ -19,22 +21,31 @@
 	<script type="text/javascript" src="/js/reserva.js"></script>
 </head>
 <body>
-    <h1>Reserva</h1>
+    <header>
+        <h1>Skate</h1>
+      </header>
+      <nav>
+          <ul class="menu">
+              <li><a href="categoria.html">Categorias</a></li>
+              <li><a href="skate.html">Skates</a></li>
+              <li><a href="cliente.html">Clientes</a></li>
+              <li><a href="mensajes.html">Mensajes</a></li>            
+              <li><a href="reserva.html">Reservaciones</a></li>
+   
+            </ul>
+      </nav>
 
-    <a href="index.html">Ir a inicio</a>
-    <a href="skate.html">Ir a skate</a>
-    <a href="mensajes.html">Ir a Mensajes</a>
-    <a href="cliente.html">Ir a cliente</a>
-    <a href="categoria.html">Ir a categoria</a><br>
+    
+    <section class="form">
+        <h4>Reserva</h4>
 
-
-    <select>
-        <option value=""></option>
-        <option value="Sk8">Sk8</option>
-        <option value="Sk7">Sk7</option>
-        <option value="Sk6">Sk6</option>
-        <option value="Sk5">Sk5</option>
-    </select>
+        <select>
+            <option value=""></option>
+            <option value="Sk8">Sk8</option>
+            <option value="Sk7">Sk7</option>
+            <option value="Sk6">Sk6</option>
+            <option value="Sk5">Sk5</option>
+        </select>
     <input type="date" id="miDateInicial" placeholder="fecha inicio">
     <input type="date" id="miDateEntrega" placeholder="fecha entrega">
     <input type="time" id="miTime">
@@ -44,7 +55,7 @@
 	<button onclick="traerInformacion()">Ver reservas</button>
 
 	<button onclick="actualizar()">Editar</button>
-
+</section>
     <div>
         <table>
             <tbody id="miResultado">
