@@ -1,68 +1,82 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reserva</title>
-    <link rel="stylesheet" type="text/css" href="/css/estiloCategoria.css" />
-    <link rel="stylesheet" type="text/css" href="/css/estilo.css" />
-    <style>
-		
-        h1{
-            text-align: center;
-        }
-        table, th, td {
-          border: 1px solid black;
-          border-collapse: collapse;
-        }
-    </style>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-	<script type="text/javascript" src="/js/reserva.js"></script>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reserva</title>
+  <link rel="stylesheet" type="text/css" href="/css/estiloCategoria.css" />
+  <link rel="stylesheet" type="text/css" href="/css/estilo.css" />
+  <link rel="stylesheet" type="text/css" href="/css/tabla.css" />
+  <style>
+    h1 {
+      text-align: center;
+    }
+
+    table,
+    th,
+    td {
+      border: 1px solid black;
+      border-collapse: collapse;
+    }
+  </style>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script type="text/javascript" src="/js/reserva.js"></script>
 </head>
+
 <body>
-    <header>
-        <h1>Skate</h1>
-      </header>
-      <nav>
-          <ul class="menu">
-              <li><a href="categoria.html">Categorias</a></li>
-              <li><a href="skate.html">Skates</a></li>
-              <li><a href="cliente.html">Clientes</a></li>
-              <li><a href="mensajes.html">Mensajes</a></li>            
-              <li><a href="reserva.html">Reservaciones</a></li>
-   
-            </ul>
-      </nav>
+  <header>
+    <h1>Skate</h1>
+  </header>
+  <nav>
+    <ul class="menu">
+      <li><a href="categoria.html">Categorias</a></li>
+      <li><a href="skate.html">Skates</a></li>
+      <li><a href="cliente.html">Clientes</a></li>
+      <li><a href="mensajes.html">Mensajes</a></li>
+      <li><a href="reserva.html">Reservaciones</a></li>
 
-    
-    <section class="form">
-        <h4>Reserva</h4>
+    </ul>
+  </nav>
 
-        <select>
-            <option value=""></option>
-            <option value="Sk8">Sk8</option>
-            <option value="Sk7">Sk7</option>
-            <option value="Sk6">Sk6</option>
-            <option value="Sk5">Sk5</option>
-        </select>
-    <input type="date" id="miDateInicial" placeholder="fecha inicio">
-    <input type="date" id="miDateEntrega" placeholder="fecha entrega">
-    <input type="time" id="miTime">
-    
-	<button onclick="guardarInformacion()">Reservar</button>
 
-	<button onclick="traerInformacion()">Ver reservas</button>
+  <div class="principal">
+    <div class="form" style="width:300px; float:left;">
+      <h4>Reserva</h4>
 
-	<button onclick="actualizar()">Editar</button>
-</section>
-    <div>
-        <table>
-            <tbody id="miResultado">
-            </tbody>
-        </table>
+      <select>
+        <option value=""></option>
+        <option value="Sk8">Sk8</option>
+        <option value="Sk7">Sk7</option>
+        <option value="Sk6">Sk6</option>
+        <option value="Sk5">Sk5</option>
+      </select>
+      <input type="date" id="miDateInicial" placeholder="fecha inicio">
+      <input type="date" id="miDateEntrega" placeholder="fecha entrega">
+      <input type="time" id="miTime">
+
+      <button onclick="guardarInformacion()">Reservar</button>
+
+      <button onclick="traerInformacion()">Ver reservas</button>
+
+      <button onclick="actualizar()">Editar</button>
     </div>
-
+    <div class="tabla">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">Nombre</th>
+            <th scope="col">Descripción</th>
+            <th scope="col">Eliminar datos</th>
+            <th scope="col">Obtener datos</th>
+          </tr>
+        </thead>
+        <tbody id="miResultado"></tbody>
+      </table>
+    </div>
+  </div>
 
 </body>
+
 </html>

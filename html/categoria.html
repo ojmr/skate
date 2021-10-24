@@ -1,31 +1,35 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Categoria</title>
-    <link rel="stylesheet" type="text/css" href="/css/estiloCategoria.css" />
-    <link rel="stylesheet" type="text/css" href="/css/estilo.css"/>
-    
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script type="text/javascript" src="/js/categoria.js"></script>
-  </head>
-  <body>
-    <header>
-      <h1>Skate</h1>
-    </header>
-    <nav>
-      <ul class="menu">
-        <li><a href="categoria.html">Categorias</a></li>
-        <li><a href="skate.html">Skates</a></li>
-        <li><a href="cliente.html">Clientes</a></li>
-        <li><a href="mensajes.html">Mensajes</a></li>
-        <li><a href="reserva.html">Reservaciones</a></li>
-      </ul>
-    </nav>
 
-    <section class="form">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Categoria</title>
+  <link rel="stylesheet" type="text/css" href="/css/estiloCategoria.css" />
+  <link rel="stylesheet" type="text/css" href="/css/estilo.css" />
+  <link rel="stylesheet" type="text/css" href="/css/tabla.css" />
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script type="text/javascript" src="/js/categoria.js"></script>
+</head>
+
+<body>
+  <header>
+    <h1>Skate</h1>
+  </header>
+  <nav>
+    <ul class="menu">
+      <li><a href="categoria.html">Categorias</a></li>
+      <li><a href="skate.html">Skates</a></li>
+      <li><a href="cliente.html">Clientes</a></li>
+      <li><a href="mensajes.html">Mensajes</a></li>
+      <li><a href="reserva.html">Reservaciones</a></li>
+    </ul>
+  </nav>
+
+  <div class="principal">
+    <div class="form" style="width:300px; float:left;">
       <h4>Categorias</h4>
       <input type="text" id="miId" placeholder="id" />
       <input type="text" id="miName" placeholder="nombre" />
@@ -36,14 +40,22 @@
       <button onclick="obtenerItems()">obtener datos</button>
 
       <button onclick="actualizar()">Actualizar</button>
-    </section>
-
-    <div>
+    </div>
+    <div class="tabla" >
       <table>
+        <thead>
+          <tr>
+            <th scope="col">Nombre</th>
+            <th scope="col">Descripción</th>
+            <th scope="col">Eliminar datos</th>
+            <th scope="col">Obtener datos</th>
+          </tr>
+        </thead>
         <tbody id="miResultado"></tbody>
       </table>
     </div>
-  </body>
+  </div>
+
+</body>
+
 </html>
-
-

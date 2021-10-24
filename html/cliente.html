@@ -7,11 +7,13 @@
     <title>Cliente</title>
     <link rel="stylesheet" type="text/css" href="/css/estiloCategoria.css" />
     <link rel="stylesheet" type="text/css" href="/css/estilo.css" />
+    <link rel="stylesheet" type="text/css" href="/css/tabla.css" />
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<script type="text/javascript" src="/js/cliente.js"></script>
 </head>
 <body>
-    <header>
+      <header>
         <h1>Skate</h1>
       </header>
       <nav>
@@ -23,29 +25,35 @@
           <li><a href="reserva.html">Reservaciones</a></li>
         </ul>
       </nav>
-
-
     
-    <section class="form">
-    <h4>Cliente</h4>
-    <!-- <input type="number" id="miId" placeholder="codigo"> -->
-	<input type="text" id="miEmail" placeholder="email">
-    <input type="text" id="miContrasena" placeholder="contraseña">
-    <input type="text" id="miName" placeholder="nombre">
-	<input type="number" id="miAge" placeholder="edad">
+      <div class="principal">
+        <div class="form" style="width:300px; float:left;">
+           <h4>Cliente</h4>
+        <!-- <input type="number" id="miId" placeholder="codigo"> -->
+      <input type="text" id="miEmail" placeholder="email">
+        <input type="text" id="miContrasena" placeholder="contraseña">
+        <input type="text" id="miName" placeholder="nombre">
+      <input type="number" id="miAge" placeholder="edad">
+        
+      <button onclick="guardarInformacionClientes()">subir datos</button>
     
-	<button onclick="guardarInformacionClientes()">subir datos</button>
-
-	<button onclick="traerInformacionClientes()">obtener datos</button>
-
-	<button onclick="actualizar()">Editar</button>
-    </section>
-
-    <div>
-        <table>
-            <tbody id="miResultado">
-            </tbody>
-        </table>
-    </div>
+      <button onclick="traerInformacionClientes()">obtener datos</button>
+    
+      <button onclick="actualizar()">Editar</button>
+        </div>
+        <div class="tabla" >
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Nombre</th>
+                <th scope="col">Descripción</th>
+                <th scope="col">Eliminar datos</th>
+                <th scope="col">Obtener datos</th>
+              </tr>
+            </thead>
+            <tbody id="miResultado"></tbody>
+          </table>
+        </div>
+      </div>
 </body>
 </html>

@@ -1,0 +1,30 @@
+ 
+
+  <div class="principal">
+    <div class="form" style="width:300px; float:left;">
+        <h4>Skates</h4>
+    <input type="number" id="miId" placeholder="id">
+    <input type="text" id="miBrand" placeholder="brand">
+    <input type="number" id="miModel" placeholder="model">
+    <input type="number" id="miCategory_id" placeholder="category_id">
+    <input type="text" id="miName" placeholder="name">
+      <button onclick="guardarInformacion()">subir datos</button>
+
+      <button onclick="traerInformacion()">obtener datos</button>
+
+      <button onclick="actualizar()">Editar</button>
+    </div>
+    <div class="tabla" >
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">Nombre</th>
+            <th scope="col">Descripción</th>
+            <th scope="col">Eliminar datos</th>
+            <th scope="col">Obtener datos</th>
+          </tr>
+        </thead>
+        <tbody id="miResultado"></tbody>
+      </table>
+    </div>
+  </div>

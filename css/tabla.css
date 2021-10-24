@@ -1,0 +1,31 @@
+.principal{
+  width: 1000px;
+}
+
+
+
+.tabla {
+  float:right;
+  margin-top: 110px;
+
+  /*align-items: center;*/
+  text-align: center;
+    
+    table-layout: fixed;
+    width: 500px;
+    border-collapse:separate;
+    border: 2px solid rgb(0, 0, 0);
+    
+    
+
+  }
+  .tabla tr:nth-child(odd) {
+    background-color: #f89f3a;
+  }
+  
+  .tabla tr:nth-child(even) {
+    background-color: #e495e4;
+  }
+.tabla{
+    background: black;
+}

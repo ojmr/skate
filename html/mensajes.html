@@ -8,6 +8,7 @@
     <title>mensaje</title>
     <link rel="stylesheet" type="text/css" href="/css/estiloCategoria.css" />
     <link rel="stylesheet" type="text/css" href="/css/estilo.css" />
+    <link rel="stylesheet" type="text/css" href="/css/tabla.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script type="text/javascript" src="/js/mensajes.js"></script>
 </head>
@@ -25,23 +26,30 @@
             <li><a href="reserva.html">Reservaciones</a></li>
         </ul>
     </nav>
-    <section class="form">
-        <h4>Mensajes</h4>
-        
-        <input type="number" id="miId" placeholder="codigo">
-        <textarea id="miMensaje" placeholder="mensaje" rows="4" cols="40"> </textarea>
-
-        <button onclick="registro()">subir datos</button>
-        <button onclick="obtenerItems()">obtener datos</button>
-
-        <!-- <button onclick="actualizar()">Editar</button> -->
-    </section>
-
-    <div>
+    <div class="principal">
+      <div class="form" style="width:300px; float:left;">
+         <h4>Mensajes</h4>
+          
+          <input type="number" id="miId" placeholder="codigo">
+          <textarea id="miMensaje" placeholder="mensaje" rows="4" cols="37"> </textarea>
+  
+          <button onclick="registro()">subir datos</button>
+          <button onclick="obtenerItems()">obtener datos</button>
+      </div>
+      <div class="tabla" >
         <table>
-            <tbody id="miResultado">
-            </tbody>
+          <thead>
+            <tr>
+              <th scope="col">Nombre</th>
+              <th scope="col">Descripción</th>
+              <th scope="col">Eliminar datos</th>
+              <th scope="col">Obtener datos</th>
+            </tr>
+          </thead>
+          <tbody id="miResultado"></tbody>
         </table>
+      </div>
+    </div>
 
 </body>
 
