@@ -33,17 +33,18 @@
          <h4>Mensajes</h4>
           
           <input type="number" id="miId" placeholder="codigo">
-          <textarea id="miMensaje" placeholder="mensaje" rows="4" cols="37"> </textarea>
+         <!-- <input type="text" id="miMensaje" placeholder="mensaje">-->
+          <textarea type="text" id="miMensaje"  rows="4" cols="37"> </textarea>
   
-          <button onclick="registro()">subir datos</button>
-          <button onclick="obtenerItems()">obtener datos</button>
+          <button onclick="guardarInformacion()">subir datos</button>
+          <button onclick="traerInformacion()">obtener datos</button>
       </div>
       <div class="tabla" >
         <table>
           <thead>
             <tr>
-              <th scope="col">Nombre</th>
-              <th scope="col">Descripción</th>
+              <th scope="col">Mensaje</th>
+              
               <th scope="col">Eliminar datos</th>
               <th scope="col">Obtener datos</th>
             </tr>

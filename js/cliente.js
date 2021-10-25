@@ -20,6 +20,8 @@ function pintarRespuestaClientes(respuesta){
         myTable+="<td>"+respuesta[i].password+"</td>";
         myTable+="<td>"+respuesta[i].name+"</td>";
         myTable+="<td>"+respuesta[i].age+"</td>";
+        myTable+="<td> <button onclick=' obtenerItemEspecifico("+respuesta[i].id+")'>Actualizar</button>";
+        myTable+="<td> <button onclick='borrar("+respuesta[i].id+")'>Borrar</button>";
         myTable+="</tr>";
     }
     myTable+="</table>";

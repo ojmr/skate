@@ -54,7 +54,7 @@
       </select>
       <input type="date" id="miDateInicial" placeholder="fecha inicio">
       <input type="date" id="miDateEntrega" placeholder="fecha entrega">
-      <input type="time" id="miTime">
+      <input type="text" id="miStatus" placeholder="status">
 
       <button onclick="guardarInformacion()">Reservar</button>
 
@@ -67,9 +67,13 @@
         <thead>
           <tr>
             <th scope="col">Nombre</th>
-            <th scope="col">Descripción</th>
-            <th scope="col">Eliminar datos</th>
-            <th scope="col">Obtener datos</th>
+            <th scope="col">Fecha de inicio</th>
+            <th scope="col">Fecha de devolución</th>
+            <th scope="col">Estado</th>
+            <th scope="col">Skate</th>
+            <th scope="col">Cliente</th>
+            <th scope="col">actualizar</th>
+            <th scope="col">Eliminar</th>
           </tr>
         </thead>
         <tbody id="miResultado"></tbody>

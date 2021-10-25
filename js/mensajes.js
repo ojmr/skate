@@ -1,58 +1,59 @@
-function registro() {
-    var elemento = {
-        id:$("#miId").val(),
-        messagetext:$("#miMensaje").val()
+function guardarInformacion() {
+    let elemento = {
+        idMessage:$("#miId").val(),
+        messageText:$("#miMensaje").val()
     
-    }
-
-    var dataToSend = JSON.stringify(elemento);
+    };
 
     $.ajax({
-
+        contentType: "application/json; charset=utf-8",
         dataType: 'json',
-        data: elemento,
-        url: "https://g378944fbaa91b4-db202109231835.adb.sa-saopaulo-1.oraclecloudapps.com/ords/admin/message/message",
+        url: "http://localhost:80/api/Message/save",
         type: 'POST',
+        data: JSON.stringify(elemento),
 
         success: function (response) {
             console.log(response);
+            console.log("Se guardo correctamente");
+            alert("Se guardo correctamente");
+            window.location.reload()
+
         },
+
         error: function (jqXHR, textStatus, errorThrown) {
+            window.location.reload()
+            alert("No se guardo correctamente");
+
 
         }
     });
 
 }
 
-function obtenerItems() {
 
+function traerInformacion() {
     $.ajax({
-        dataType: 'json',
-        url: "https://g378944fbaa91b4-db202109231835.adb.sa-saopaulo-1.oraclecloudapps.com/ords/admin/message/message",
-        type: 'GET',
-
-        success: function (response) {
-
-
-            for (let i = 0; i < response.items.length; i++) {
-
-                $("#miResultado").append("<tr>");
-                $("#miResultado").append("<td>" + response.items[i].id + "</td>");
-                $("#miResultado").append("<td>" + response.items[i].messagetext + "</td>");
-
-                $("#miResultado").append('<td><button onclick = "borrar('+response.items[i].id+')">Borrar</button></td>');
-                $("#miResultado").append('<td><button onclick="obtenerItemEspecifico('+response.items[i].id+')">Cargar</button></td>');
-                $("#miResultado").append("<tr>");
-
-
-            }
-
-        },
-        error: function (jqXHR, textStatus, errorThrown) {
-
+        url: "http://localhost:80/api/Message/all",
+        type: "GET",
+        datatype: "JSON",
+        success: function (respuesta) {
+            console.log(respuesta);
+            pintarRespuesta(respuesta);
         }
     });
+}
+function pintarRespuesta(respuesta) {
 
+    let myTable = "<table>";
+    for (i = 0; i < respuesta.length; i++) {
+        myTable += "<tr>";
+        myTable += "<td>" + respuesta[i].messageText + "</td>";
+        myTable+="<td> <button onclick=' obtenerItemEspecifico("+respuesta[i].idMessage+")'>Actualizar</button>";
+        myTable+="<td> <button onclick='borrar("+respuesta[i].idMessage+")'>Borrar</button>";
+        myTable += "</tr>";
+    }
+    myTable += "</table>";
+    $("#miResultado").html(myTable);
 }
 
 
@@ -67,10 +68,13 @@ function borrar(idElemento) {
     $.ajax({
         dataType: 'json',
         data: dataToSend,
-        url: "https://g378944fbaa91b4-db202109231835.adb.sa-saopaulo-1.oraclecloudapps.com/ords/admin/message/message",
+        url: "http://localhost:80/api/Message/"+idElemento,
         type: 'DELETE',
         contentType:'application/json',
         success: function (response) {
+            $("#miResultado").empty();
+            traerInformacion();
+            alert("Se ha Eliminado.")
             console.log(response);
         },
         error: function (jqXHR, textStatus, errorThrown) {
@@ -82,14 +86,14 @@ function borrar(idElemento) {
 function obtenerItemEspecifico(idItem) {
     $.ajax({
         dataType: 'json',
-        url: "https://g378944fbaa91b4-db202109231835.adb.sa-saopaulo-1.oraclecloudapps.com/ords/admin/message/message/"+idItem,
+        url: "http://localhost:80/api/Message/"+idItem,
         type: 'GET',
 
         success:function(response) {
             var item =response.items[0];
 
-            $("#miId").val(item.id);
-            $("#miMensaje").val(item.messagetext);
+            $("#miId").val(item.idMessage);
+            $("#miMensaje").val(item.messageText);
             
 
 
@@ -104,7 +108,7 @@ function obtenerItemEspecifico(idItem) {
 function actualizar(){
     var elemento={
         id:$("#miId").val(),
-        messagetext:$("#miMensaje").val()
+        messageText:$("#miMensaje").val()
       }
     
     
@@ -114,11 +118,15 @@ function actualizar(){
           dataType: 'json',
           data:dataToSend,
           contentType:'application/json',
-          url:"https://g378944fbaa91b4-db202109231835.adb.sa-saopaulo-1.oraclecloudapps.com/ords/admin/message/message",
+          url:"http://localhost:80/api/Message/update",
           type:'PUT',
           
           success:function(response) {
-            console.log(response);
+            $("#miResultado").empty();
+            $("#miId").val("");
+            $("#miMensaje").val("");
+            traerInformacion();
+            alert("se ha Actualizado correctamente el mensaje")
           },
           
           error: function(jqXHR, textStatus, errorThrown) {

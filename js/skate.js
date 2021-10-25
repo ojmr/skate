@@ -66,9 +66,6 @@ function guardarInformacion() {
 
 }
 
-
-
-
 function borrar(idElemento) {
     var elemento = {
         id: idElemento
@@ -80,7 +77,7 @@ function borrar(idElemento) {
     $.ajax({
         dataType: 'json',
         data: dataToSend,
-        url: "http://129.159.57.27:80/api/Category",
+        url: "http://localhost:80/api/Skate/"+idElemento,
         type: 'DELETE',
         contentType: 'application/json',
         success: function (response) {
@@ -109,8 +106,6 @@ function obtenerItemEspecifico(idItem) {
             $("#miModel").val(item.model);
             $("#miCategory_id").val(item.category_id);
             $("#miName").val(item.name);
-
-
         },
         error: function (jqXHR, textStatus, errorThrown){}
            
@@ -136,7 +131,7 @@ function actualizar() {
         dataType: 'json',
         data: dataToSend,
         contentType: 'application/json',
-        url: "https://g378944fbaa91b4-db202109231835.adb.sa-saopaulo-1.oraclecloudapps.com/ords/admin/skate/skate",
+        url: "http://localhost:80/api/Skate/update",
         type: 'PUT',
 
         success: function (response) {

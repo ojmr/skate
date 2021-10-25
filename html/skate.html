@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+<html lang="es">
+
 <html>
 
 <head>
@@ -38,16 +40,20 @@
 
       <button onclick="traerInformacion()">obtener datos</button>
 
-      <button onclick="actualizar()">Editar</button>
+      <button onclick="actualizar()">Actualizar</button>
     </div>
     <div class="tabla">
       <table>
         <thead>
           <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Marca</th>
+            <th scope="col">Modelo</th>
+            <th scope="col">Categoria</th>
             <th scope="col">Nombre</th>
-            <th scope="col">Descripción</th>
-            <th scope="col">Eliminar datos</th>
-            <th scope="col">Obtener datos</th>
+            <th scope="col">Eliminar</th>
+            <th scope="col">Cargar datos</th>
+            
           </tr>
         </thead>
         <tbody id="miResultado"></tbody>

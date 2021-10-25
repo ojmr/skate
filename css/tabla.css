@@ -19,13 +19,20 @@
     
 
   }
+
+.tabla th{
+  background-color: #ff8800;
+}
+
   .tabla tr:nth-child(odd) {
-    background-color: #f89f3a;
+    background-color: rgb(255, 255, 255);
   }
   
   .tabla tr:nth-child(even) {
-    background-color: #e495e4;
+    background-color: orange;
   }
+
+  
 .tabla{
-    background: black;
+    background: rgb(14, 23, 70);
 }

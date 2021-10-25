@@ -1,71 +1,3 @@
-/*function borrar(idElemento) {
-    var elemento = {
-        id: idElemento
-
-    };
-
-    var dataToSend = JSON.stringify(elemento);
-
-    $.ajax({
-        dataType: 'json',
-        data: dataToSend,
-        url: "http://localhost:80/api/Category/"+idItem,
-        type: 'DELETE',
-        contentType: 'application/json',
-        success: function (response) {
-            console.log(response);
-        },
-        error: function (jqXHR, textStatus, errorThrown) {
-
-        }
-    });
-}*/
-/*function obtenerItemEspecifico(idItem) {
-    $.ajax({
-        dataType: 'json',
-        url: "http://localhost:80/api/Category/" + idItem,
-        type: 'GET',
-
-        success: function (response) {
-            var item = response.items[0];
-
-            $("#miName").val(item.name);
-            $("#miDescripcion").val(item.description);
-
-        },
-        error: function (jqXHR, textStatus, errorThrown) {
-
-        }
-    });
-
-}*/
-/*function actualizar() {
-    var elemento = {
-        name: $("#miName").val(),
-        description: $("#miDescripcion").val(),
-    }
-
-
-    var dataToSend = JSON.stringify(elemento);
-    //JSON= JavaScript Object Notation
-    $.ajax({
-        dataType: 'json',
-        data: dataToSend,
-        contentType: 'application/json',
-        url: "http://localhost:80/api/Category/update",
-        type: 'PUT',
-
-        success: function (response) {
-            console.log(response);
-        },
-
-        error: function (jqXHR, textStatus, errorThrown) {
-
-        }
-    });
-
-}*/
-
 
 function traerInformacionCategorias() {
     $.ajax({
@@ -78,7 +10,6 @@ function traerInformacionCategorias() {
         }
     });
 }
-
 function pintarRespuesta(respuesta) {
 
     let myTable = "<table>";
@@ -86,66 +17,31 @@ function pintarRespuesta(respuesta) {
         myTable += "<tr>";
         myTable += "<td>" + respuesta[i].name + "</td>";
         myTable += "<td>" + respuesta[i].description + "</td>";
+        myTable+="<td> <button onclick=' obtenerItemEspecifico("+respuesta[i].id+")'>Actualizar</button>";
+        myTable+="<td> <button onclick='borrar("+respuesta[i].id+")'>Borrar</button>";
         myTable += "</tr>";
     }
     myTable += "</table>";
     $("#miResultado").html(myTable);
 }
 
-function obtenerItems(){
-
-    $.ajax({
-        dataType: 'json',
-        url:"http://localhost:80/api/Category/all",
-        crossOrigin:true,
-        type:'GET',
-        success:function(response) {
-            console.log(response);
-            var misItems=response;
-
-            for(i=0;i<misItems.length;i++){
-
-                $("#miResultado").append("<tr>");
-                $("#miResultado").append("<td>"+misItems[i].name+"</td>");
-               // $("#miResultado").append("<td>"+misItems[i].price+"</td>");
-                $("#miResultado").append("<td>"+misItems[i].description+"</td>");
-                $("#miResultado").append('<td><button onclick="borrar('+misItems[i].id+')">Borrar</button></td>');
-                $("#miResultado").append('<td><button onclick="obtenerItemEspecifico('+misItems[i].id+')">Cargar</button></td>');
-                $("#miResultado").append("</tr>");
-
-            }
-
-        },
-
-        error: function(jqXHR, textStatus, errorThrown) {
-
-        }
-    });
-
-}
-
-
 function obtenerItemEspecifico(idItem){
-    //alert(idItem)
-    alert("entro")
+    var elemento={
+        id:idItem
+    };
+    var dataToSend=JSON.stringify(elemento);
     $.ajax({
         dataType: 'json',
+        data:dataToSend,
         url:"http://localhost:80/api/Category/"+idItem,
         type:'GET',
        
         success:function(response) {
             console.log(response);
-            myFunc(response)
-            var testVar=99;    
-            console.log(myFunc(testVar));
             var item=response.items[0];
             $("#miName").val(item.name);
             $("#miDescripcion").val(item.description);
         
-            
-           
-
-
 
         },
 
@@ -155,29 +51,22 @@ function obtenerItemEspecifico(idItem){
     });
 
 }
-function myFunc(inVar) {
-    if (inVar === undefined) {
-          console.log(inVar.not)
-    }
-    return inVar;
-  }
-  
-
 function borrar(idElemento){
     var elemento={
         id:idElemento
     };
 
-
     var dataToSend=JSON.stringify(elemento);
-//JSON= JavaScript Object Notation
     $.ajax({
         dataType:'json',
         data:dataToSend,
-        url:"http://localhost:80/api/Category/"+idItem,
+        url:"http://localhost:80/api/Category/"+idElemento,
         type:'DELETE',
         contentType:'application/json',
         success:function(response) {
+            $("#miResultado").empty();
+            traerInformacionCategorias();
+            alert("Se ha Eliminado.")
             console.log(response);
         },
 
@@ -186,7 +75,6 @@ function borrar(idElemento){
         }
     });
 }
-
 function guardarInformacionCategorias() {
     let var2 = {
         name: $("#miName").val(),
@@ -227,10 +115,7 @@ function actualizar(){
         description:$("#miDescripcion").val(),
         
     }
-
-
     var dataToSend=JSON.stringify(elemento);
-//JSON= JavaScript Object Notation
     $.ajax({
         dataType: 'json',
         data:dataToSend,
@@ -239,12 +124,17 @@ function actualizar(){
         type:'PUT',
 
         success:function(response) {
-            console.log(response);
+            $("#miResultado").empty();
+            $("#miId").val("");
+            $("#miName").val("");
+            $("#miDescripcion").val("");
+            traerInformacionCategorias();
+            alert("se ha Actualizado correctamente la categoria")
         },
 
         error: function(jqXHR, textStatus, errorThrown) {
 
         }
+       
     });
-
 }
